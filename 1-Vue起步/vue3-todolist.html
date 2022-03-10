@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 快速开始</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <div id="app"></div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    inputValue: "",
+                    list: [{ name: 1, flag: false }, { name: 2, flag: false }, { name: 3, flag: false },],
+
+                }
+            },
+            methods: {
+                handleAdd() {
+                    // console.log(typeof );
+                    if (parseInt(this.inputValue) > 10) {
+                        this.flag = true
+                    }
+                    this.list.push({
+                        name: this.inputValue,
+                        flag: this.flag,
+                    })
+                    this.inputValue = null
+                }
+            },
+            template: `
+            <div>
+                <input v-model="inputValue"/>
+                <button v-on:click="handleAdd">增加</button>
+                <url>
+                    <li v-for="(item,index) of list" v-on:click="handleDelete(index)">{{ item.name }}
+                    <p  v-if="item.flag">比10大的数字</p>
+                    <p  v-else>比10小的数字</p>
+                    </li>
+                </url>
+            </div>
+            `
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

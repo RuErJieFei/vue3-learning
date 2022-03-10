@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <div id="app" style="display: flex;"></div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    inputValue: "",
+                    list: [1, 2, 3],
+                    imageList: [
+                        { title: '1.jpg', src: 'https://cdn.jsdelivr.net/gh/RuErJieFei/PicX@master/20211024/01ACC3C1-107E-44E2-A465-04D8B8464CBF.1asqgtzsxe00.jpeg' },
+                        { title: '2.jpg', src: 'https://cdn.jsdelivr.net/gh/RuErJieFei/PicX@master/20211024/21AA9672-196E-42F5-B831-1387DCF22CDF.5f5purwhcso0.jpeg' },
+                        { title: '3.jpg', src: 'https://cdn.jsdelivr.net/gh/RuErJieFei/PicX@master/20211024/6DCF69C4-2F29-4A75-8C58-66D1462EFF04.d0b6xhh7bww.jpeg' },
+                    ]
+                }
+            },
+            methods: {
+                handleAdd() {
+                    this.list.push(this.inputValue)
+                    this.inputValue = null
+                }
+            },
+            template: `
+        <div>
+            <input v-model="inputValue"/>
+            <button v-on:click="handleAdd" v-bind:title="inputValue">增加</button>
+            <url >
+                <todo-item v-for="(item,index) of list" v-bind:content="item" v-bind:index="index"/>
+                <image-card v-for="(item,index) of imageList" v-bind:src="item.src" v-bind:title="item.title"/>   
+            </url>
+        </div>
+        `
+        })
+
+        app.component('todo-item', {
+            props: ['content', 'index'],
+            template: `<li>{{ index }}----{{ content }}</li>`
+        })
+
+        app.component('image-card', {
+            props: ['src', 'title'],
+            template: ` <img :src="src" width="200" height="200"/> 
+                        <h1>{{ title }}</h1>
+            `
+        })
+
+        app.mount('#app')
+    </script>
+
+</body>
+
+</html>
