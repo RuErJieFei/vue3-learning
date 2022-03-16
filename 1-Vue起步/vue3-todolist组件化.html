@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .green {
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,6 +30,13 @@
                         { title: '2.jpg', src: 'https://cdn.jsdelivr.net/gh/RuErJieFei/PicX@master/20211024/21AA9672-196E-42F5-B831-1387DCF22CDF.5f5purwhcso0.jpeg' },
                         { title: '3.jpg', src: 'https://cdn.jsdelivr.net/gh/RuErJieFei/PicX@master/20211024/6DCF69C4-2F29-4A75-8C58-66D1462EFF04.d0b6xhh7bww.jpeg' },
                     ]
+                }
+            },
+            computed: {
+                checked() {
+                    return {
+                        green: isGreen
+                    }
                 }
             },
             methods: {

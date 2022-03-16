@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue3 快速开始</title>
+
+    <style>
+        .green {
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,8 +24,12 @@
             data() {
                 return {
                     inputValue: "",
-                    list: [{ name: 1, flag: false }, { name: 2, flag: false }, { name: 3, flag: false },],
-
+                    list: [
+                        { name: 1, flag: false },
+                        { name: 2, flag: false },
+                        { name: 3, flag: false },
+                    ],
+                    isGreen: false
                 }
             },
             methods: {
@@ -35,12 +45,17 @@
                     this.inputValue = null
                 }
             },
+            computed: {
+                checked() {
+                    return { green: isGreen }
+                }
+            },
             template: `
             <div>
                 <input v-model="inputValue"/>
                 <button v-on:click="handleAdd">增加</button>
                 <url>
-                    <li v-for="(item,index) of list" v-on:click="handleDelete(index)">{{ item.name }}
+                    <li :class="{ green: isGreen }" v-for="(item,index) of list" v-on:click="isGreen = !isGreen">{{ item.name }}
                     <p  v-if="item.flag">比10大的数字</p>
                     <p  v-else>比10小的数字</p>
                     </li>
